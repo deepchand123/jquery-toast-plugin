@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Toast Plugin</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/jquery.toast.css">
+    <script src="js/jquery.min.js"></script>    
+    <script type="text/javascript" src="js/jquery.toast.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin: 20px 0px;">jQuery Toast Plugin</h1>
+        <h3 style="text-align: center; margin: 20px 0px;">URLs</h3>
+        
+        <h4 style="text-align: center; margin: 20px 0px;">
+            <a href="https://github.com/kamranahmedse/jquery-toast-plugin">https://github.com/kamranahmedse/jquery-toast-plugin</a>
+        </h4>        
+        <h4 style="text-align: center; margin: 20px 0px;"> 
+            <a href="https://kamranahmed.info/toast">https://kamranahmed.info/toast</a>
+        </h4>
+        <hr>
+        <div style="text-align: center; margin: 20px 0px;">
+            <button class="showToaster">Show Toaster</button>
+            <button class="closeToaster">Close All Toaster</button>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    //custom function show the toaster
+    function customToaster(custom_heading, custom_msg, custom_icon_type){
+                var options = {                    
+                    text: custom_msg, // Text that is to be shown in the toast
+                    heading: custom_heading, // Optional heading to be shown on the toast
+                    icon: custom_icon_type, // Type of toast icon
+                    showHideTransition: 'fade', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'top-left', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values                                                                
+                    textAlign: 'left',  // Text alignment i.e. left, right or center
+                    loader: false,  // Whether to show loader or not. True by default
+                    loaderBg: '#9ec600',  // Background color of the toast loader
+                    beforeShow: function () {}, // will be triggered before the toast is shown
+                    afterShown: function () {}, // will be triggered after the toat has been shown
+                    beforeHide: function () {}, // will be triggered before the toast gets hidden
+                    afterHidden: function () {}  // will be triggered after the toast has been hidden                
+                };
+                $.toast(options);
+    }
+    
+    //for shiow the toaster
+    $('.showToaster').on('click', function ( e ) {
+        customToaster('Success', 'Form successfully saved','success');
+        customToaster('Warning', 'Only one click for form submit','warning');
+            customToaster('Error', 'Form not saved','error');                                
+    });
+
+    //for close all toasters
+    $('.closeToaster').on('click', function ( e ) {
+            $.toast().reset('all');                      
+    });
+        
+</script>
+</html>
